@@ -54,6 +54,7 @@
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
   <ImportGroup Label="ExtensionSettings">
+    <Import Project="$(VCTargetsPath)\BuildCustomizations\masm.props" />
   </ImportGroup>
   <ImportGroup Label="Shared">
   </ImportGroup>
@@ -134,6 +135,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="cheat\aimbot.cpp" />
+    <ClCompile Include="cheat\arduino\arduino_mouse.cpp" />
     <ClCompile Include="cheat\cstrike.cpp" />
     <ClCompile Include="cheat\drawing.cpp" />
     <ClCompile Include="cheat\entity.cpp" />
@@ -152,6 +154,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="cheat\aimbot.h" />
+    <ClInclude Include="cheat\arduino\arduino_mouse.h" />
     <ClInclude Include="cheat\cfg.h" />
     <ClInclude Include="cheat\cstrike.h" />
     <ClInclude Include="cheat\drawing.h" />
@@ -176,7 +179,11 @@
     <ClInclude Include="ext\imgui\imstb_truetype.h" />
     <ClInclude Include="ext\memory.h" />
   </ItemGroup>
+  <ItemGroup>
+    <MASM Include="ext\luck.asm" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
+    <Import Project="$(VCTargetsPath)\BuildCustomizations\masm.targets" />
   </ImportGroup>
 </Project>

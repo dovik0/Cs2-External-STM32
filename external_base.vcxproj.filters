@@ -63,6 +63,9 @@
     <ClCompile Include="cheat\localplayer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="cheat\arduino\arduino_mouse.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ext\imgui\imconfig.h">
@@ -137,5 +140,13 @@
     <ClInclude Include="ext\dumper\offsets.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="cheat\arduino\arduino_mouse.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ext\luck.asm">
+      <Filter>Source Files</Filter>
+    </None>
   </ItemGroup>
 </Project>

@@ -4,6 +4,8 @@
 namespace cfg {
 	inline bool vsync = false;
     const double maxFPS = 500.0;
+    inline HANDLE hSerial = nullptr;                // variable globale unique
+    inline const char* portName = "\\\\.\\COM9";
 
     inline bool teamCheck = true;
     inline bool espOn = false;

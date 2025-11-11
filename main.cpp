@@ -1,4 +1,4 @@
-#include <iostream>
+﻿#include <iostream>
 #include <thread>
 #include "cheat/menu.h"
 #include "cheat/cstrike.h"
@@ -7,6 +7,7 @@
 #include "cheat/localplayer.h" 
 #include "cheat/entity.h"  
 #include "cheat/cfg.h"
+#include "cheat/arduino/arduino_mouse.h"
 
 void aimbotThread() {
     while (true) {
@@ -35,9 +36,19 @@ int main() {
     while (!cfg::isGameReady) {
         client = memory->GetModuleBase(L"client.dll");
         if (client != 0)
-			cfg::isGameReady = true;
-	}
+            cfg::isGameReady = true;
+    }
     std::cout << "[Dovik] client.dll -> " << std::hex << client << std::dec << "\n";
+
+    cfg::hSerial = openSerialPort(cfg::portName, CBR_9600);
+    if (cfg::hSerial == INVALID_HANDLE_VALUE) {
+        std::cerr << "[Dovik] Port " << cfg::portName << "Error" << std::endl;
+        system("pause");
+        return 1;
+    }
+
+    std::cout << "[Dovik] Port COM9 Connected\n";
+
     localplayer::init();
     entities::init();
     std::thread(aimbotThread).detach();
@@ -45,8 +56,6 @@ int main() {
 
     if (!(overlay::CreateDeviceD3D(overlay::Window)))
         return 1;
-
-    Menu::ApplyCustomStyle();
 
     while (!overlay::ShouldQuit) {
         overlay::Render();

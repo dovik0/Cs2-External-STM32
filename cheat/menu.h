@@ -3,7 +3,6 @@
 
 namespace Menu {
     void Render();
-    void ApplyCustomStyle();
     bool IsVisible();
     void Toggle();
 }

@@ -4,6 +4,9 @@
 #include <TlHelp32.h>
 #include <string_view>
 
+extern "C" intptr_t Luck_ReadVirtualMemory(HANDLE ProcessHandle, PVOID BaseAddress, PVOID Buffer, ULONG NumberOfBytesToRead, PULONG NumberOfBytesRead);
+extern "C" intptr_t Luck_WriteVirtualMemory(HANDLE Processhandle, PVOID BaseAddress, PVOID Buffer, ULONG NumberOfBytesToWrite, PULONG NumberOfBytesWritten);
+
 class Memory
 {
 private:
@@ -17,17 +20,17 @@ public:
     std::uintptr_t GetModuleBase(std::wstring_view moduleName) const noexcept;
 
     template <typename T>
-    const T read(const std::uintptr_t address) const noexcept
+    T read(const std::uintptr_t address) const noexcept
     {
         T value = { };
-        ::ReadProcessMemory(processHandle, reinterpret_cast<const void*>(address), &value, sizeof(T), NULL);
+        ::Luck_ReadVirtualMemory(processHandle, reinterpret_cast<void*>(address), &value, sizeof(T), NULL);
         return value;
     }
 
     template <typename T>
     void write(const std::uintptr_t address, const T& value) const noexcept
     {
-        ::WriteProcessMemory(processHandle, reinterpret_cast<void*>(address), &value, sizeof(T), NULL);
+        ::Luck_WriteVirtualMemory(processHandle, reinterpret_cast<void*>(address), &value, sizeof(T), NULL);
     }
 };
 
